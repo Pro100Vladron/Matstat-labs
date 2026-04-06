@@ -1,0 +1,38 @@
+# Задание 2 вариант 13
+import random
+import matplotlib.pyplot as plt
+
+# Функция для моделирования одного эксперимента
+def exp():
+    return [random.randint(1, 6) for _ in range(3)]
+
+# Функция для проверки события A (сумма >= 10)
+def A(result):
+    return sum(result) >= 10
+
+# Функция для проведения серии экспериментов и построения графика
+def experiments(n):
+    A_count = 0
+    relative_frequencies = []
+
+    for i in range(1, n + 1):
+        result = exp()
+        if A(result):
+            A_count += 1
+        relative_frequency = A_count / i
+        relative_frequencies.append(relative_frequency)
+
+    # Построение графика
+    plt.plot(range(1, num_experiments + 1), relative_frequencies, label='Относительная частота события A')
+    plt.axhline(y=0.625, color='r', linestyle='--', label='Теоретическая вероятность (0.625)')
+    plt.xlabel('Количество экспериментов')
+    plt.ylabel('Относительная частота')
+    plt.title('Теорема Бернулли: Зависимость относительной частоты от числа экспериментов')
+    plt.legend()
+    plt.show()
+
+# Параметры эксперимента
+n = 1000  # Количество экспериментов
+
+# Запуск моделирования
+experiments(num_experiments) 
